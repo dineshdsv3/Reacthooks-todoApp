@@ -1,19 +1,26 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import TodoForm from './TodoForm';
 
 function TodoApp() {
 	const initialTodo = [
 		{ id: 1, task: 'Wakeup', completed: false },
 		{ id: 2, task: 'Bath', completed: false },
 		{ id: 3, task: 'Wakeup', completed: false },
-    ];
-    
-    const customStyles = {
-        'textAlign':'center'
-    }
+	];
+
+	const customStyles = {
+		textAlign: 'center',
+	};
 
 	const [todos, setToDos] = useState(initialTodo);
+
+	const addTodo = (newTodoText) => {
+		setToDos([...todos, { id: 4, task: newTodoText, completed: false }]);
+	};
+
 	return (
 		<div>
+			<TodoForm addTodo={addTodo} />
 			<table style={customStyles}>
 				<thead>
 					<tr>
@@ -29,7 +36,7 @@ function TodoApp() {
 							<td>{todo.task}</td>
 							<td>{todo.status}</td>
 						</tr>
-                    ))}
+					))}
 				</tbody>
 			</table>
 		</div>
